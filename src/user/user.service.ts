@@ -29,14 +29,17 @@ export class Userservice{
         let ID = new Types.ObjectId(id);
      const ss= await this.usermodel.aggregate([{$match:{_id:ID}},
         {
+            $project : {__v:0
+
+            }
+        },
+        {
             $lookup:{
             from:"addresses",
             localField:"_id",
             foreignField:"userid",
             as:"alldetails"
-        }},{
-            $project:{"addresses.userid":0,"addresses.__v":0}
-        }
+        },}
       ])
       console.log(ss);
       
