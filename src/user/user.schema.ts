@@ -4,7 +4,7 @@ import { HydratedDocument } from "mongoose";
 
 
 export type userdetail=HydratedDocument<User>
-@Schema()
+@Schema({timestamps:true})
 export class User{
 @Prop()
 name:string

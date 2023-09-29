@@ -19,5 +19,9 @@ export class userController {
         
         return this.userservice.getdetail(id)
     }
+    @Get('find')
+    async findall(@Body() data:any){
+         return this.userservice.findAll(data.page,data.perPage)
+    }
 }
 

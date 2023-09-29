@@ -38,14 +38,20 @@ export class Userservice{
             from:"addresses",
             localField:"_id",
             foreignField:"userid",
-            as:"alldetails"
-        },}
+            as:"alldetails",
+            pipeline:[{$project:{__v:0,userid:0}}]
+        }},
       ])
       console.log(ss);
       
       return ss 
     }
-
+        async findAll(page: number , perPage: number ){
+            const skip = (page - 1) * perPage;
+            return await this.usermodel.find().skip(skip).limit(perPage)
+        //  return await this.usermodel.countDocuments()
+          }
+    
 
 
 } 
